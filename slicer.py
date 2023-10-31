@@ -37,8 +37,3 @@ def clip_vtk_file(file_path, axis='x'):
 
     print(f"File clipped along the {axis}-axis. New VTK file created.")
 
-# Replace 'your_file.vtk' with the path to your VTK file
-file_path = 'models/blast-furnace.vtk'
-
-# Call the function to clip the VTK file along the x-axis
-clip_vtk_file(file_path, axis='y')
