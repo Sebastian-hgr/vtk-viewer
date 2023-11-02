@@ -1,8 +1,8 @@
 import vtk
 
-def clip_vtk_file(file_path, axis='x'):
+def clip_vtk_file(start_file_path, goal_file_path, axis='x'):
     reader = vtk.vtkUnstructuredGridReader()
-    reader.SetFileName(file_path)
+    reader.SetFileName(start_file_path)
     reader.Update()
     unstructured_grid = reader.GetOutput()
 
@@ -32,8 +32,7 @@ def clip_vtk_file(file_path, axis='x'):
 
     writer = vtk.vtkUnstructuredGridWriter()
     writer.SetInputData(clip_function.GetOutput())
-    writer.SetFileName(f"models/output_clipped_{axis}.vtk")
+    writer.SetFileName(f"{goal_file_path}")
     writer.Update()
 
     print(f"File clipped along the {axis}-axis. New VTK file created.")
-
