@@ -1,7 +1,9 @@
 import * as THREE from 'three'
 import { STLLoader } from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
+import {WebGLRenderer} from "three";
 
+// window.onload = init
 
 const scene = new THREE.Scene()
 const loader = new STLLoader()
@@ -15,7 +17,9 @@ let submit = document.getElementById('submit')
 submit.addEventListener('click', init)
 
 
+
 function init() {
+    console.log("init")
     setSceneDef()
     setLight()
     setCamera()
@@ -26,21 +30,29 @@ function setSceneDef() {
     scene.background = new THREE.Color()
     scene.add(new THREE.AxesHelper(5))
 }
+
 function setLight() {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
 
-    // Directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(0, 1, 0); // Adjust the position of the light
-    directionalLight.castShadow = true;
-    scene.add(directionalLight);
+    // Directional light from the back
+    const backLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    backLight.position.set(0, 1, -1); // Renamed for clarity and moved behind to shine forward
+    scene.add(backLight);
 
-    // Set up shadow properties for the directional light
-    directionalLight.shadow.mapSize.width = 2048;
-    directionalLight.shadow.mapSize.height = 2048;
-    directionalLight.shadow.bias = -0.003;
+    // Hemisphere light to simulate sky lighting
+    const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+    hemiLight.position.set(0, 1, 0);
+    scene.add(hemiLight);
+
+    // Directional light from the front
+    const frontLight = new THREE.DirectionalLight(0xffffff, 1.0);
+    frontLight.position.set(0, 0, 1); // Placed in front to illuminate from the front
+    scene.add(frontLight);
 }
+
+
+
 
 function setCamera() {
     camera.position.z = 2
@@ -65,6 +77,8 @@ function loadModel() {
     loader.load('./models/blast-furnace.stl', function (geometry) {
         var material = new THREE.MeshNormalMaterial()
         var mesh = new THREE.Mesh(geometry, material)
+        mesh.scale.set(0.1,0.1,0.1)
+        geometry.center()
         scene.add(mesh)
     }, function (xhr) {
         console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
@@ -73,6 +87,7 @@ function loadModel() {
         console.log(error)
     })
 }
+
 
 window.addEventListener('resize', onWindowResize, false)
 

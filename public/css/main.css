@@ -1,10 +1,49 @@
 body {
+    font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 0;
+    display: grid;
+    grid-template-areas:
+            'header header header header header'
+            'form form model model model'
+            'form form model model model'
+            'form form model model model'
+            'form form console console console';
+}
+
+.header {
+    background: orange;
+    grid-area: header;
+    height: 8vh;
+}
+
+.form {
+    /*background: green;*/
+    grid-area: form;
+    width: 20vw;
+    height: 92vh;
+    border-right: rgba(128, 128, 128, 1) 2px solid;
+
+}
+
+.form-inner {
+    border: black solid 2px;
+    height: 80%;
+    width: 50%;
+    margin: auto;
+    padding: 0.5rem;
 }
 
 .model {
-    border: red 2px solid;
-    height: 80vh;
+    /*background: red;*/
+    grid-area: model;
     width: 80vw;
+    height: 85vh;
+}
+
+.console {
+    background: blue;
+    grid-area: console;
+    height: 7vh;
+
 }
