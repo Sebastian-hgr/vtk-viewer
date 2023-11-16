@@ -22,14 +22,15 @@ body {
     grid-area: form;
     width: 20vw;
     height: 92vh;
-    border-right: rgba(128, 128, 128, 1) 2px solid;
+    /*border-right: rgba(128, 128, 128, 1) 2px solid;*/
 
 }
 
 .form-inner {
-    border: black solid 2px;
-    height: 80%;
-    width: 50%;
+    border-right: rgba(128, 128, 128, 1) 2px solid;
+    /*border: black solid 2px;*/
+    height: 97.55%;
+    width: 95.5%;
     margin: auto;
     padding: 0.5rem;
 }

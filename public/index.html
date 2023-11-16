@@ -25,18 +25,16 @@
         <form action="http://localhost:8080/getCut" method="post">
             <label>Axis: </label>
             <input type="text" id="input" name="input"><br>
-            <input type="submit" value="submit"><br>
+            <input type="submit" id="load" value="submit"><br>
 
             <input type="radio" id="v-plane" name="cuttingTool" value="1">v-plane<br>
             <input type="radio" id="h-plane" name="cuttingTool" value="2">h-plane<br>
-            <input list="type" name="types">
-            <datalist id="type">
+            <select id="cut" name="cuts">
                 <option value="eighth">eighth</option>
-                <option value="full"></option>
-                <option value="quarter"></option>
-                <option value="slice"></option>
-            </datalist>
-
+                <option value="full">full</option>
+                <option value="quarter">quarter</option>
+                <option value="slice">slice</option>
+            </select>
         </form>
 
         <input type="submit" id="submit" value="show"/>

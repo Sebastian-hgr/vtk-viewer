@@ -3,7 +3,7 @@ import { STLLoader } from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
 import {WebGLRenderer} from "three";
 
-// window.onload = init
+window.onload = setTimeout(init, 1000)
 
 const scene = new THREE.Scene()
 const loader = new STLLoader()
@@ -17,13 +17,18 @@ let submit = document.getElementById('submit')
 submit.addEventListener('click', init)
 
 
+let list = document.getElementById('cut')
 
 function init() {
+    console.log(list.value)
+
+
     console.log("init")
     setSceneDef()
     setLight()
     setCamera()
     loadModel()
+
 }
 
 function setSceneDef() {
@@ -81,7 +86,7 @@ function loadModel() {
         geometry.center()
         scene.add(mesh)
     }, function (xhr) {
-        console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+        // console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
         console.log('loading model')
     }, function (error) {
         console.log(error)
