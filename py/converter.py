@@ -1,8 +1,8 @@
 import vtk
 
 # Replace "input.vtk" with the actual path to your VTK file
-input_filename = "../public/models/output_clipped_x.vtk"
-output_filename = "../public/models/output-converted-to-stl.stl"
+# input_filename = "../public/models/output_clipped_x.vtk"
+# output_filename = "../public/models/output-converted-to-stl.stl"
 
 
 def convert_vtk_to_stl(input_filename, output_filename):
