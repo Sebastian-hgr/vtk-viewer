@@ -18,14 +18,14 @@ app.listen(port, () => {
 
 app.post('/getCut', (req, res) => {
     const formData = req.body
-    console.log(`app.js formdata: ${formData}`)
+    // console.log(`app.js formdata: ${formData}`)
     const { input } = formData // Assuming the form field is named 'input'
 
     const select = formData.cuts
-    console.log('select: ' + select)
+    // console.log('select: ' + select)
 
     // Modify the Python script to handle the input
-    const command = `python3 getFormData.py ${input}`
+    const command = `python3 getFormData.py`
 
 
     exec(command, (error, stdout, stderr) => {

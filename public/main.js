@@ -3,7 +3,7 @@ import { STLLoader } from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
 import {WebGLRenderer} from "three";
 
-window.onload = setTimeout(init, 1000)
+window.onload = setTimeout(init, 1800)
 
 const scene = new THREE.Scene()
 const loader = new STLLoader()
