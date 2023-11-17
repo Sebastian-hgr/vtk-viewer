@@ -20,9 +20,6 @@ submit.addEventListener('click', init)
 let list = document.getElementById('cut')
 
 function init() {
-    console.log(list.value)
-
-
     console.log("init")
     setSceneDef()
     setLight()

@@ -18,10 +18,15 @@ app.listen(port, () => {
 
 app.post('/getCut', (req, res) => {
     const formData = req.body
+    console.log(`app.js formdata: ${formData}`)
     const { input } = formData // Assuming the form field is named 'input'
+
+    const select = formData.cuts
+    console.log('select: ' + select)
 
     // Modify the Python script to handle the input
     const command = `python3 getFormData.py ${input}`
+
 
     exec(command, (error, stdout, stderr) => {
         if (error) {
@@ -36,6 +41,23 @@ app.post('/getCut', (req, res) => {
 
 })
 
+// app.post('/getEighth', (req,res) => {
+//     const formEighth = req.body
+//     console.log(`app.js ${formEighth}`)
+//
+//     // const command = 'python3 getFormData.py'
+//     //
+//     // exec(command, (error, stdout, stderr) => {
+//     //     if (error) {
+//     //         console.log(`eighth error: ${error}`)
+//     //         return
+//     //     }
+//     //     console.log(`eight: ${stdout}`)
+//     //     console.log(`eight: ${stderr}`)
+//     // })
+//     res.redirect('/')
+// })
+
 function onstartup() {
 
     const command = `python3 getFormData.py`
@@ -46,7 +68,7 @@ function onstartup() {
 
             return
         }
-        console.log(`stdout: ${stdout}`)
-        console.error(`stderr: ${stderr}`)
+        console.log(`startup stdout: ${stdout}`)
+        console.error(`startup stderr: ${stderr}`)
     })
 }

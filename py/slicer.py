@@ -1,4 +1,6 @@
 import vtk
+import math
+
 
 def clip_vtk_file(start_file_path, goal_file_path, axis='x'):
     reader = vtk.vtkUnstructuredGridReader()
@@ -8,7 +10,6 @@ def clip_vtk_file(start_file_path, goal_file_path, axis='x'):
 
     bounds = unstructured_grid.GetBounds()
     slice_position = (bounds[0] + bounds[1]) / 2 if axis == 'x' else (bounds[2] + bounds[3]) / 2 if axis == 'y' else (bounds[4] + bounds[5]) / 2
-
     clip_function = vtk.vtkClipDataSet()
     clip_function.SetInputData(unstructured_grid)
     clip_function.SetClipFunction(vtk.vtkPlane())
