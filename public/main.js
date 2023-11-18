@@ -3,7 +3,9 @@ import { STLLoader } from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
 import {WebGLRenderer} from "three";
 
-window.onload = setTimeout(init, 1800)
+window.onload = setTimeout(init, 2500)
+window.onload = move
+
 
 const scene = new THREE.Scene()
 const loader = new STLLoader()
@@ -16,8 +18,13 @@ const camera = new THREE.PerspectiveCamera(
 let submit = document.getElementById('submit')
 submit.addEventListener('click', init)
 
+let range = document.getElementById('range')
 
-let list = document.getElementById('cut')
+range.oninput = function () {
+    document.getElementById('getRange').textContent = range.value
+    sessionStorage.setItem('deg' , range.value)
+}
+
 
 function init() {
     console.log("init")
@@ -25,7 +32,7 @@ function init() {
     setLight()
     setCamera()
     loadModel()
-
+    addLog()
 }
 
 function setSceneDef() {
@@ -110,3 +117,36 @@ function render() {
     renderer.render(scene, camera)
 }
 animate()
+
+
+
+
+//progess bar
+// document.getElementById('load').addEventListener('click', move)
+
+
+var i = 0;
+function move() {
+    console.log('progress bar')
+    if (i === 0) {
+        i = 1;
+        var elem = document.getElementById("myBar");
+        var width = 10;
+        var id = setInterval(frame, 50);
+        function frame() {
+            if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+            } else {
+                width++;
+                elem.style.width = width + "%";
+                elem.innerHTML = width  + "%";
+            }
+        }
+    }
+}
+
+function addLog() {
+    let degLog = sessionStorage.getItem('deg')
+    document.getElementById('log-window').innerHTML += `last cut with ${degLog}deg <br>`
+}

@@ -29,8 +29,8 @@ body {
 .form-inner {
     border-right: rgba(128, 128, 128, 1) 2px solid;
     /*border: black solid 2px;*/
-    height: 97.55%;
-    width: 95.5%;
+    height: 40%;
+    width: 90%;
     margin: auto;
     padding: 0.5rem;
 }
@@ -43,8 +43,21 @@ body {
 }
 
 .console {
-    background: blue;
+    /*background: blue;*/
     grid-area: console;
     height: 7vh;
-
+}
+#myBar {
+    width: 10%;
+    height: 30px;
+    background-color: #04AA6D;
+    text-align: center;
+    line-height: 30px;
+    color: white;
+}
+.log {
+    background: lightgray;
+    height: 40%;
+    width: 90%;
+    color: green;
 }

@@ -25,7 +25,8 @@
         <form action="http://localhost:8080/getCut" method="post">
             <label>Axis: </label>
             <input type="text" id="input" name="input"><br>
-            <input type="range" min="1" max="360" name="deg" value="range">
+            <input type="range" id="range" min="2" max="360" name="range" value="2">
+            <span id="getRange">2</span>
             <input type="submit" id="load" value="submit"><br>
 
             <input type="radio" id="v-plane" name="cuttingTool" value="1">v-plane<br>
@@ -37,23 +38,15 @@
                 <option value="slice">slice</option>
             </select>
             <br>
-
-            <input type="submit" name="eighthBtn" id="eighth" value="eighth"><br>
-            <input type="submit" name="fullBtn" id="full" value="full"><br>
-            <input type="submit" name="quarterBtn" id="quarter" value="quarter"><br>
-            <input type="submit" name="sliceBtn" id="slice" value="slice"><br>
         </form>
-<!--        <form action="https://localhost:8080/getEighth" method="post">-->
-<!--            <input type="submit" id="eighth" value="eighth">-->
-<!--        </form>-->
-
         <input type="submit" id="submit" value="show"/>
     </div>
+    <div class="log" id="log-window"></div>
 </div>
 <div class="model" id="modelContainer"></div>
 
 <div class="console">
-
+    <div id="myBar">10%</div>
 </div>
 
 <script type="module" src="main.js"></script>

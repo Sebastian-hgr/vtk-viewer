@@ -20,13 +20,15 @@ app.post('/getCut', (req, res) => {
     const formData = req.body
     // console.log(`app.js formdata: ${formData}`)
     const { input } = formData // Assuming the form field is named 'input'
-    const { range } = formData
+    const range = formData.range
 
-    const select = formData.cuts
+
     // console.log('select: ' + select)
+    console.log(`range value = ${range}`)
+
 
     // Modify the Python script to handle the input
-    const command = `python3 getFormData.py`
+    const command = `python3 getFormData.py ${range}`
 
 
     exec(command, (error, stdout, stderr) => {
