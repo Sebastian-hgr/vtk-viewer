@@ -20,6 +20,7 @@ app.post('/getCut', (req, res) => {
     const formData = req.body
     // console.log(`app.js formdata: ${formData}`)
     const { input } = formData // Assuming the form field is named 'input'
+    const { range } = formData
 
     const select = formData.cuts
     // console.log('select: ' + select)

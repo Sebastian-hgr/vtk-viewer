@@ -3,7 +3,6 @@ import math
 
 
 def extract_cylinder_section(input_file, output_file, angle):
-
     # Load the unstructured grid file
     reader = vtk.vtkUnstructuredGridReader()
     reader.SetFileName(input_file)
@@ -16,6 +15,12 @@ def extract_cylinder_section(input_file, output_file, angle):
     # Prepare points and cells to transfer valid data
     new_points = vtk.vtkPoints()
     new_cells = vtk.vtkCellArray()
+
+    # Copy cell data structure from the original grid
+    new_grid.GetCellData().CopyAllocate(grid.GetCellData())
+
+    # Copy point data structure from the original grid
+    new_grid.GetPointData().CopyAllocate(grid.GetPointData())
 
     # Calculate radians for the start and end angle
     angle_start_rad = math.radians(0)
@@ -52,6 +57,8 @@ def extract_cylinder_section(input_file, output_file, angle):
             if pid not in point_map:
                 new_pid = new_points.InsertNextPoint(x, y, z)
                 point_map[pid] = new_pid
+                # Copy the point data for each new point
+                new_grid.GetPointData().CopyData(grid.GetPointData(), pid, new_pid)
             else:
                 new_pid = point_map[pid]
 
@@ -60,6 +67,8 @@ def extract_cylinder_section(input_file, output_file, angle):
         # If the cell is within the required angles, add it to the new grid
         if keep_cell:
             new_cells.InsertNextCell(new_cell_pids)
+            # Copy the cell data for each new cell
+            new_grid.GetCellData().CopyData(grid.GetCellData(), cell_id, cell_id)
 
     # Set the points and cells in the new grid
     new_grid.SetPoints(new_points)

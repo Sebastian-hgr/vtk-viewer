@@ -13,5 +13,5 @@ if __name__ == "__main__":
     axis = sys.argv[1] if len(sys.argv) > 1 else 360
     print(f"Received input: {axis}")
 
-    extract_cylinder_section(start_file_path, goal_file_path, 70)
+    extract_cylinder_section(start_file_path, goal_file_path, axis)
     convert_vtk_to_stl(goal_file_path, output_file_path)
