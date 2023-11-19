@@ -1,10 +1,14 @@
 import * as THREE from 'three'
-import { STLLoader } from './jsm/loaders/STLLoader.js'
+import {STLLoader} from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
-import {WebGLRenderer} from "three";
 
-window.onload = setTimeout(init, 2500)
-window.onload = move
+window.onload = function (){
+    setTimeout(init, 5000)
+    move()
+    addLog()
+}
+let storedValues = JSON.parse(localStorage.getItem('myValues')) || [];
+
 
 
 const scene = new THREE.Scene()
@@ -16,15 +20,22 @@ const camera = new THREE.PerspectiveCamera(
     1000)
 
 let submit = document.getElementById('submit')
-submit.addEventListener('click', init)
+// submit.addEventListener('click', storeValue)
 
 let range = document.getElementById('range')
 
 range.oninput = function () {
     document.getElementById('getRange').textContent = range.value
-    sessionStorage.setItem('deg' , range.value)
 }
 
+document.getElementById('form').addEventListener('submit', onSubmit)
+
+function onSubmit() {
+    console.log('value insert')
+    storedValues.push(range.value);
+    localStorage.setItem('myValues', JSON.stringify(storedValues));
+
+}
 
 function init() {
     console.log("init")
@@ -61,8 +72,6 @@ function setLight() {
 }
 
 
-
-
 function setCamera() {
     camera.position.z = 2
 }
@@ -86,7 +95,7 @@ function loadModel() {
     loader.load('./models/blast-furnace.stl', function (geometry) {
         var material = new THREE.MeshNormalMaterial()
         var mesh = new THREE.Mesh(geometry, material)
-        mesh.scale.set(0.1,0.1,0.1)
+        mesh.scale.set(0.1, 0.1, 0.1)
         geometry.center()
         scene.add(mesh)
     }, function (xhr) {
@@ -116,37 +125,49 @@ function animate() {
 function render() {
     renderer.render(scene, camera)
 }
+
 animate()
-
-
 
 
 //progess bar
 // document.getElementById('load').addEventListener('click', move)
 
+let elem = document.getElementById("myBar");
+let i = 0;
+let width = 0
+let id
 
-var i = 0;
 function move() {
     console.log('progress bar')
     if (i === 0) {
         i = 1;
-        var elem = document.getElementById("myBar");
-        var width = 10;
-        var id = setInterval(frame, 50);
-        function frame() {
-            if (width >= 100) {
-                clearInterval(id);
-                i = 0;
-            } else {
-                width++;
-                elem.style.width = width + "%";
-                elem.innerHTML = width  + "%";
-            }
-        }
+        width = 0;
+        elem.style.width = width + "%";
+        elem.innerHTML = width + "%";
+        id = setInterval(frame, 50);
+    }
+}
+function frame() {
+    if (width >= 100) {
+        clearInterval(id);
+        i = 0;
+    } else {
+        width++;
+        elem.style.width = width + "%";
+        elem.innerHTML = width + "%";
+    }
+}
+function addLog() {
+    console.log(`all stored from add log:  ${storedValues}`);
+
+    document.getElementById('log-window').innerHTML = '';
+
+    for (let i = storedValues.length - 1; i >= 0; i--) {
+        document.getElementById('log-window').innerHTML += `last cut: ${storedValues[i]} degs<br>`;
     }
 }
 
-function addLog() {
-    let degLog = sessionStorage.getItem('deg')
-    document.getElementById('log-window').innerHTML += `last cut with ${degLog}deg <br>`
-}
+document.getElementById('clear-storage').addEventListener('click', function () {
+    localStorage.clear()
+    document.getElementById('log-window').innerHTML = ''
+})

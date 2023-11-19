@@ -22,31 +22,28 @@
 
 <div class="form">
     <div class="form-inner">
-        <form action="http://localhost:8080/getCut" method="post">
+        <form action="http://localhost:8080/getCut" method="post" id="form">
             <label>Axis: </label>
             <input type="text" id="input" name="input"><br>
             <input type="range" id="range" min="2" max="360" name="range" value="2">
             <span id="getRange">2</span>
-            <input type="submit" id="load" value="submit"><br>
+            <input type="submit" id="load" value="submit" ><br>
 
             <input type="radio" id="v-plane" name="cuttingTool" value="1">v-plane<br>
             <input type="radio" id="h-plane" name="cuttingTool" value="2">h-plane<br>
-            <select id="cut" name="cuts">
-                <option value="eighth">eighth</option>
-                <option value="full">full</option>
-                <option value="quarter">quarter</option>
-                <option value="slice">slice</option>
-            </select>
-            <br>
+
+
+
         </form>
-        <input type="submit" id="submit" value="show"/>
+        <button id="clear-storage">clear log</button>
     </div>
-    <div class="log" id="log-window"></div>
+    <div class="log" id="log-window">
+    </div>
 </div>
 <div class="model" id="modelContainer"></div>
 
 <div class="console">
-    <div id="myBar">10%</div>
+    <div id="myBar">0</div>
 </div>
 
 <script type="module" src="main.js"></script>
