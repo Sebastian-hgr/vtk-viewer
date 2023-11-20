@@ -1,3 +1,5 @@
 .idea
 node_modules
 package-lock.json
+public/models/output-clipped.vtk
+public/models/blast-furnace.stl
