@@ -18,7 +18,11 @@
 </head>
 <body>
 
-<div class="header"></div>
+<div class="header">
+    <img class="header-logo" id="pri-logo" src="./images/primetals-technologies.png">
+    <h1 class="header-text">VTK-Viewer</h1>
+    <img class="header-logo" id="leo-logo" src="./images/htl-leonding.png">
+</div>
 
 <div class="form">
     <div class="form-inner">
@@ -27,18 +31,14 @@
             <input type="text" id="input" name="input"><br>
             <input type="range" id="range" min="2" max="360" name="range" value="2">
             <span id="getRange">2</span>
-            <input type="submit" id="load" value="submit" ><br>
+            <input type="submit" id="load" value="submit"><br>
 
             <input type="radio" id="v-plane" name="cuttingTool" value="1">v-plane<br>
             <input type="radio" id="h-plane" name="cuttingTool" value="2">h-plane<br>
-
-
-
         </form>
-        <button id="clear-storage">clear log</button>
     </div>
-    <div class="log" id="log-window">
-    </div>
+    <div class="log" id="log-window"></div>
+    <button id="clear-storage" class="clear-log">clear log</button>
 </div>
 <div class="model" id="modelContainer"></div>
 

@@ -2,6 +2,7 @@ import * as THREE from 'three'
 import {STLLoader} from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
 
+
 window.onload = function (){
     setTimeout(init, 5000)
     move()
@@ -150,20 +151,31 @@ function move() {
 function frame() {
     if (width >= 100) {
         clearInterval(id);
+
         i = 0;
     } else {
         width++;
         elem.style.width = width + "%";
         elem.innerHTML = width + "%";
+        if (width <= 40) {
+            elem.style.background = 'red'
+        } else if (width < 80 && width > 40) {
+            elem.style.background = 'orange';
+        } else {
+            elem.style.background = '#04AA6D'
+        }
     }
 }
 function addLog() {
+    let textBackground = document.getElementById('log-text-background')
+
     console.log(`all stored from add log:  ${storedValues}`);
 
     document.getElementById('log-window').innerHTML = '';
 
+    localStorage.clear()
     for (let i = storedValues.length - 1; i >= 0; i--) {
-        document.getElementById('log-window').innerHTML += `last cut: ${storedValues[i]} degs<br>`;
+        document.getElementById('log-window').innerHTML += `<div class="log-text" id="log-text-background">Render: ${storedValues[i]} deg</div>`;
     }
 }
 

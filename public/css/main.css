@@ -12,53 +12,90 @@ body {
 }
 
 .header {
-    background: orange;
+    border-bottom: lightgray 2px solid;
     grid-area: header;
     height: 8vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.header-text {
+    padding: 1.5rem 10rem;
+}
+.header-logo {
+    height: 80%;
+    padding: 0.5rem;
+}
+#pri-logo {
+    border-right: 1px solid lightgray;
+}
+#leo-logo {
+    border-left: 1px solid lightgray;
 }
 
 .form {
-    /*background: green;*/
     grid-area: form;
-    width: 20vw;
-    height: 92vh;
-    /*border-right: rgba(128, 128, 128, 1) 2px solid;*/
-
+    width: 19.8vw;
+    height: 91.5vh;
+    display: grid;
+    grid-template-columns: auto;
+    border-right: 2px solid lightgray;
+    border-bottom: 2px solid lightgray;
 }
 
 .form-inner {
-    border-right: rgba(128, 128, 128, 1) 2px solid;
+    /*border-right: rgba(128, 128, 128, 1) 2px solid;*/
     /*border: black solid 2px;*/
     height: 40%;
     width: 90%;
     margin: auto;
     padding: 0.5rem;
 }
+.log {
+    background: lightgray;
+    border-top: lightgray 2px solid;
+    border-bottom: lightgray 2px solid;
+    color: green;
+    overflow: scroll;
+    height: 50vh;
+    overflow-x: hidden;
+}
+.log-text {
+    width: 50%;
+    margin: auto;
+    padding: 0.2rem;
+    text-align: center;
+}
+.clear-log {
+    font-size: 1.2rem;
+    height: 100%;
+    border: none;
+    background: lightgray;
+    transition: background 0.5s ease;
+}
+.clear-log:hover {
+    background: rgba(128, 128, 128,1);
+}
 
 .model {
-    /*background: red;*/
     grid-area: model;
     width: 80vw;
-    height: 85vh;
+    height: 86.5vh;
+    border-bottom: lightgray 2px solid;
 }
 
 .console {
     /*background: blue;*/
     grid-area: console;
-    height: 7vh;
+    height: 5vh;
 }
 #myBar {
     width: 0;
-    height: 30px;
-    background-color: #04AA6D;
-    text-align: center;
+    height: 100%;
     line-height: 30px;
     color: white;
-}
-.log {
-    background: lightgray;
-    height: 40%;
-    width: 90%;
-    color: green;
-    overflow: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
