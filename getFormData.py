@@ -1,5 +1,4 @@
-import sys
-import time
+from imports import *
 
 from py.slicer import clip_with_deg, clip_on_z
 from py.converter import convert_vtk_to_stl

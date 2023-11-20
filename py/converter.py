@@ -1,4 +1,4 @@
-import vtk
+from imports import *
 
 
 def convert_vtk_to_stl(input_filename, output_filename):
