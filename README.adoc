@@ -1,0 +1,17 @@
+= A tool to cut and display vtk in web
+
+== startup
+
+
+* npm install
+* npm start
+
+
+=== also before running install python and the used libraries
+
+* sudo apt update
+* sudo apt install python3
+* sudo apt install python3-pip
+* pip3 install vtk
+
+
