@@ -27,18 +27,22 @@
 <div class="form">
     <div class="form-inner">
         <form action="http://localhost:8080/getCut" method="post" id="form">
-            <label>Axis: </label>
-            <input type="text" id="input" name="input"><br>
-            <input type="range" id="range" min="2" max="360" name="range" value="2">
-            <span id="getRange">2</span>
-            <input type="submit" id="load" value="submit"><br>
-
-            <input type="radio" id="v-plane" name="cuttingTool" value="1">v-plane<br>
-            <input type="radio" id="h-plane" name="cuttingTool" value="2">h-plane<br>
+            <div class="axis">
+                <label>Axis: </label>
+                <input type="range" id="range" min="2" max="360" name="range" value="2">
+                <span id="getRange">2</span><br>
+            </div>
+            <input class="sub-btn" type="submit" id="load" value="clip with degree"><br>
+        </form>
+        <form action="http://localhost:8080/getZ" method="post" id="formZ">
+            <input class="sub-btn" type="submit" id="clipZ" value="clip on Z"><br>
+        </form>
+        <form action="http://localhost:8080/reset" method="post" id="formReset">
+            <input class="sub-btn" type="submit" id="reset" value="reset model"><br>
         </form>
     </div>
-    <div class="log" id="log-window"></div>
-    <button id="clear-storage" class="clear-log">clear log</button>
+            <div class="log" id="log-window"></div>
+        <button id="clear-storage" class="clear-log">clear log</button>
 </div>
 <div class="model" id="modelContainer"></div>
 

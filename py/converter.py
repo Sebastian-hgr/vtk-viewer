@@ -1,6 +1,7 @@
 from imports import *
 
 
+
 def convert_vtk_to_stl(input_filename, output_filename):
     # Read the VTK file
     reader = vtk.vtkUnstructuredGridReader()
@@ -18,6 +19,5 @@ def convert_vtk_to_stl(input_filename, output_filename):
     stl_writer.SetInputConnection(geometry_filter.GetOutputPort())
     stl_writer.Write()
 
+
     print(f"converted the file {input_filename} to stl")
-
-

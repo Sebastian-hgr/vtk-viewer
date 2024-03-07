@@ -35,11 +35,11 @@ body {
 }
 
 .form {
+    /*margin-top: 0.5rem;*/
     grid-area: form;
     width: 19.8vw;
     height: 91.5vh;
-    display: grid;
-    grid-template-columns: auto;
+    grid-auto-columns: auto;
     border-right: 2px solid lightgray;
     border-bottom: 2px solid lightgray;
 }
@@ -47,10 +47,32 @@ body {
 .form-inner {
     /*border-right: rgba(128, 128, 128, 1) 2px solid;*/
     /*border: black solid 2px;*/
-    height: 40%;
     width: 90%;
     margin: auto;
     padding: 0.5rem;
+}
+.axis {
+    display: flex;
+    justify-content: center;
+
+}
+#range {
+    margin: 0.2rem;
+}
+.sub-btn {
+    font-size: 1.2rem;
+    width: 50%;
+    margin: 0.5rem auto;
+    border: none;
+    background: lightgray;
+    padding: 0.2rem;
+    display: flex;
+    justify-content: center;
+    transition: background 0.5s ease;
+}
+.sub-btn:hover {
+    color: white;
+    background: rgba(128, 128, 128,1);
 }
 .log {
     background: lightgray;
@@ -58,7 +80,7 @@ body {
     border-bottom: lightgray 2px solid;
     color: green;
     overflow: scroll;
-    height: 50vh;
+    height: 56%;
     overflow-x: hidden;
 }
 .log-text {
@@ -68,19 +90,25 @@ body {
     text-align: center;
 }
 .clear-log {
-    font-size: 1.2rem;
-    height: 100%;
-    border: none;
+    position: absolute;
     background: lightgray;
+    width: 19.8vw;
+    height: 15%;
+    bottom: 0;
+    font-size: 1.2rem;
     transition: background 0.5s ease;
+    border: none;
+    border-top: rgba(128, 128, 128,1) 2px solid;
+
 }
 .clear-log:hover {
+    color: white;
     background: rgba(128, 128, 128,1);
 }
 
 .model {
     grid-area: model;
-    width: 80vw;
+    /*width: 80vw;*/
     height: 86.5vh;
     border-bottom: lightgray 2px solid;
 }

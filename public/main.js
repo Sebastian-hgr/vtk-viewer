@@ -3,12 +3,12 @@ import {STLLoader} from './jsm/loaders/STLLoader.js'
 import {OrbitControls} from './jsm/controls/OrbitControls.js'
 
 
+let storedValues = JSON.parse(localStorage.getItem('myValues')) || [];
 window.onload = function (){
     setTimeout(init, 5000)
     move()
     addLog()
 }
-let storedValues = JSON.parse(localStorage.getItem('myValues')) || [];
 
 
 
@@ -30,12 +30,23 @@ range.oninput = function () {
 }
 
 document.getElementById('form').addEventListener('submit', onSubmit)
+document.getElementById('formZ').addEventListener('submit', onSubmitZ)
+document.getElementById('formReset').addEventListener('submit', onSubmitReset)
 
 function onSubmit() {
     console.log('value insert')
-    storedValues.push(range.value);
+    storedValues.push(range.value + " deg");
     localStorage.setItem('myValues', JSON.stringify(storedValues));
+}
 
+function onSubmitZ() {
+    storedValues.push('z')
+    localStorage.setItem('myValues', JSON.stringify(storedValues))
+}
+
+function onSubmitReset() {
+    storedValues.push('reset')
+    localStorage.setItem('myValues', JSON.stringify(storedValues))
 }
 
 function init() {
@@ -107,7 +118,6 @@ function loadModel() {
     })
 }
 
-
 window.addEventListener('resize', onWindowResize, false)
 
 function onWindowResize() {
@@ -175,11 +185,12 @@ function addLog() {
 
     localStorage.clear()
     for (let i = storedValues.length - 1; i >= 0; i--) {
-        document.getElementById('log-window').innerHTML += `<div class="log-text" id="log-text-background">Render: ${storedValues[i]} deg</div>`;
+        document.getElementById('log-window').innerHTML += `<div class="log-text" id="log-text-background">Render: ${storedValues[i]}</div>`;
     }
 }
 
 document.getElementById('clear-storage').addEventListener('click', function () {
     localStorage.clear()
+    storedValues = []
     document.getElementById('log-window').innerHTML = ''
 })

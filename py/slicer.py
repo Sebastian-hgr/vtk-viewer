@@ -1,7 +1,7 @@
 from imports import *
 
 
-def clip_on_z(start_file_path, goal_file_path, axis='x'):
+def clip_on_z(start_file_path, goal_file_path, axis='z'):
     reader = vtk.vtkUnstructuredGridReader()
     reader.SetFileName(start_file_path)
     reader.Update()
